@@ -64,6 +64,13 @@ fbq('init','794031833495509');
 
 fbq('track','PageView');
 
+fbq('track','ViewContent',{
+content_name:'Buku Brankas Rahasia',
+content_category:'Brankas',
+value:149000,
+currency:'IDR'
+});
+
 </script>
 
 <noscript>
@@ -1647,16 +1654,30 @@ promo.innerHTML="Rp399.000";
 
 });
 
-// ==========================
-// PIXEL ADD TO CART
-// ==========================
 
-qty.addEventListener("change",function(){
 
-fbq('track','AddToCart');
+let formStarted=false;
 
+document.querySelectorAll("#checkoutForm input, #checkoutForm textarea, #checkoutForm select")
+.forEach(function(el){
+
+el.addEventListener("input",function(){
+
+if(!formStarted){
+
+formStarted=true;
+
+fbq('track','AddToCart',{
+content_name:'Buku Brankas Rahasia',
+content_category:'Brankas',
+value:149000,
+currency:'IDR'
 });
 
+}
+
+});
+});
 
 document.getElementById("checkoutForm").addEventListener("submit",async function(e){
 
@@ -1702,9 +1723,12 @@ alert("Alamat wajib diisi");
 return;
 }
 
-fbq('track','InitiateCheckout');
-
-fbq('track','Lead');
+fbq('track','InitiateCheckout',{
+content_name:'Buku Brankas Rahasia',
+content_category:'Brankas',
+value:harga,
+currency:'IDR'
+});
 
 const btn=document.querySelector("#checkoutForm button");
 
@@ -1755,11 +1779,9 @@ console.log(err);
 // ======================
 
 fbq('track','Purchase',{
-
+content_name:'Buku Brankas Rahasia',
 currency:'IDR',
-
 value:harga
-
 });
 
 // ======================
@@ -1814,7 +1836,7 @@ window.location.href=
 
 encodeURIComponent(pesan);
 
-},600);
+},1000);
 
 });
 
