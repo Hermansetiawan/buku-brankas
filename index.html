@@ -1738,31 +1738,17 @@ paket:"L Size (Besar): 26.5 x 20 x 6.7 cm - Hitam"
 // Simpan Spreadsheet
 // ======================
 
-try{
-
-await fetch(SHEET_URL,{
-
+fetch(SHEET_URL,{
+  
 method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
 
 body:JSON.stringify(data)
 
-});
-
-}catch(err){
-
-btn.disabled=false;
-
-btn.innerHTML="🔥 PESAN SEKARANG";
+}).catch(function(err){
 
 console.log(err);
 
-}
+});
 
 // ======================
 // Pixel Purchase
